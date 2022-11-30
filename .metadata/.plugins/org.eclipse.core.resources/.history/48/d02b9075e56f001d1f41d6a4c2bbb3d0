@@ -1,0 +1,5 @@
+package com.ecommerce.model;
+
+public class Current_User_session {
+
+}
