@@ -34,4 +34,6 @@ public class Product {
 	
 	private Integer quantity;
 	
+	private Integer rating;
+	
 }

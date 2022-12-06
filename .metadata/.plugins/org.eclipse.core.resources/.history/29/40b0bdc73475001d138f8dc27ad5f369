@@ -1,0 +1,34 @@
+package com.ecommerce.exception;
+
+import java.time.LocalDateTime;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+	@ExceptionHandler(ProductException.class)
+	public ResponseEntity<ErrorDetails> productxceptionHandler(ProductException pe, WebRequest wr){
+		
+		ErrorDetails error = new ErrorDetails(pe.getMessage(), wr.getDescription(false), LocalDateTime.now());
+		
+		return new ResponseEntity<ErrorDetails>(error,HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,69 @@
+package com.ecommerce.service;
+
+import java.util.List;
+
+import javax.persistence.criteria.Order;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ecommerce.exception.OrderException;
+import com.ecommerce.exception.ProductException;
+import com.ecommerce.exception.UserException;
+import com.ecommerce.model.Product;
+import com.ecommerce.model.User;
+import com.ecommerce.repo.OrderRepo;
+import com.ecommerce.repo.ProductRepo;
+import com.ecommerce.repo.UserRepo;
+
+@Service
+public class AdminServiceImpl implements AdminService{
+
+	@Autowired
+	private ProductRepo proRepo;
+	
+	@Autowired
+	private OrderRepo orderRepo;
+	
+	@Autowired
+	private UserRepo userRepo;
+	
+	
+	@Override
+	public Product addProduct(Product product {
+		
+		
+		
+	}
+
+	@Override
+	public List<Product> getAllProducts() throws ProductException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getAllOrdersDetails() throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order searchOrderById(Integer orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User searchUserDetailById(Integer userId) throws UserException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getAllUserDetails() throws UserException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

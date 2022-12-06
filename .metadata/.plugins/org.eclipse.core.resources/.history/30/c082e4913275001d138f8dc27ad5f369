@@ -1,0 +1,67 @@
+package com.ecommerce.controller;
+
+import java.util.List;
+
+import javax.persistence.criteria.Order;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ecommerce.exception.OrderException;
+import com.ecommerce.exception.ProductException;
+import com.ecommerce.model.Product;
+import com.ecommerce.service.AdminService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+@RequestMapping("/myShop")
+public class AdminContoller {
+
+	@Autowired
+	private AdminService adminService;
+	
+	
+	@PostMapping("/products")
+	public ResponseEntity<Product> addProductHandler(@Valid  @RequestBody Product product){
+		
+		Product pro = adminService.addProduct(product);
+		
+		return new ResponseEntity<Product>(pro,HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/products")
+	public ResponseEntity<List<Product>> getAllProductsHandler() throws ProductException{
+		
+		List<Product> list = adminService.getAllProducts();
+		
+		return new ResponseEntity<List<Product>>(list,HttpStatus.OK);
+		
+	}
+	
+	
+	@GetMapping("/orders")
+	public ResponseEntity<List<Order>> getAllOrdersDetails() throws OrderException{
+		
+		List<Order> list = adminService.getAllOrdersDetails();
+		
+		return new ResponseEntity<List<Order>>(list,HttpStatus.OK);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
