@@ -1,0 +1,25 @@
+package com.ecommerce.service;
+
+import org.springframework.stereotype.Service;
+
+import com.ecommerce.exception.AdminException;
+import com.ecommerce.exception.UserException;
+import com.ecommerce.model.Admin;
+import com.ecommerce.model.User;
+
+@Service
+public class RegistrationServiceImpl implements RegistrationService {
+
+	@Override
+	public String registerAdmin(Admin admin) throws AdminException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String registerUser(User user) throws UserException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

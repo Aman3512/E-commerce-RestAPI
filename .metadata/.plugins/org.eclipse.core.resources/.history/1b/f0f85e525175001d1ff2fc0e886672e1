@@ -1,0 +1,51 @@
+package com.ecommerce.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ecommerce.exception.AdminException;
+import com.ecommerce.exception.UserException;
+import com.ecommerce.model.Admin;
+import com.ecommerce.model.User;
+import com.ecommerce.repo.AdminRepo;
+import com.ecommerce.repo.UserRepo;
+
+@Service
+public class RegistrationServiceImpl implements RegistrationService {
+
+	@Autowired
+	private AdminRepo adminRepo;
+	
+	@Autowired
+	private UserRepo userRepo;
+	
+	@Override
+	public String registerAdmin(Admin admin) throws AdminException {
+		
+		Admin checkAdmin = adminRepo.findByMobileNo(admin.getMobileNo());
+		
+		if(checkAdmin == null) {
+			
+			adminRepo.save(admin);
+			return "Admin registered Successfully!";
+			
+		}else
+			throw new AdminException("Admin already registered with id : " + checkAdmin.getId());
+	}
+
+	@Override
+	public String registerUser(User user) throws UserException {
+		
+
+		User checkUser = userRepo.findByMobileNo(user.getMobileNo());
+		
+		if(checkUser == null) {
+			
+			userRepo.save(user);
+			return "User registered Successfully!";
+			
+		}else
+			throw new UserException("User already registered with id : " + checkUser.getId());
+	}
+
+}

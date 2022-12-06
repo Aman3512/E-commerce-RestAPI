@@ -28,12 +28,11 @@ public class Admin {
 	@NotNull(message = "Name can't be null")
 	private String name;
 	
-	@Size(min=10 , max=10)
 	@NotNull(message = "Mobile no. is Mandatory")
 	@Column(unique = true)
-	private String mobileNo;  // username
+	private Long mobileNo;  // username
 	
-	@Email
+	@Email(message = "Invalid Email")
 	private String email;
 	
 	@NotNull(message = "Password can't be null")

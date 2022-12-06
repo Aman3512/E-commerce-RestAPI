@@ -1,0 +1,9 @@
+package com.ecommerce.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ecommerce.model.Current_Admin_session;
+
+public interface Current_Admin_sessionRepo extends JpaRepository<Current_Admin_session, Integer> {
+
+}

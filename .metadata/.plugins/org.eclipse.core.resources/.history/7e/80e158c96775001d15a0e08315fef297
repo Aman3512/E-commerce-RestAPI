@@ -1,0 +1,50 @@
+package com.ecommerce.service;
+
+import javax.security.auth.login.LoginException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ecommerce.exception.LogoutException;
+import com.ecommerce.model.LoginDTO;
+import com.ecommerce.repo.AdminRepo;
+import com.ecommerce.repo.Current_Admin_sessionRepo;
+import com.ecommerce.repo.UserRepo;
+
+@Service
+public class LoginLogoutServiceImpl implements LoginLogoutService {
+
+	@Autowired
+	public AdminRepo adminRepo;
+	
+	@Autowired
+	public UserRepo userRepo;
+	
+	public Current_Admin_sessionRepo sessionRepo;
+	
+	@Override
+	public String loginAdmin(LoginDTO login) throws LoginException {
+		
+		
+		
+	}
+
+	@Override
+	public String LogoutAdmin(String key) throws LogoutException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String loginUser(LoginDTO login) throws LoginException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String LogoutUser(String key) throws LogoutException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

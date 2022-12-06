@@ -1,0 +1,34 @@
+package com.ecommerce.service;
+
+import javax.security.auth.login.LoginException;
+
+import com.ecommerce.exception.LogoutException;
+import com.ecommerce.model.LoginDTO;
+
+public class LoginLogoutServiceImpl implements LoginLogoutService {
+
+	@Override
+	public String loginAdmin(LoginDTO login) throws LoginException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String LogoutAdmin(String key) throws LogoutException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String loginUser(LoginDTO login) throws LoginException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String LogoutUser(String key) throws LogoutException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

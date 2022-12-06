@@ -1,0 +1,5 @@
+package com.ecommerce.repo;
+
+public interface Current_User_sessionRepo {
+
+}
