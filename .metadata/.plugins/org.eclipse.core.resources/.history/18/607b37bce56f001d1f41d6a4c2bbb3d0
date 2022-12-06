@@ -1,7 +1,0 @@
-package com.ecommerce.model;
-
-public class LoginDTO {
-
-	private String mobileNo;
-	private String password;
-}

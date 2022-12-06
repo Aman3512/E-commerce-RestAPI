@@ -1,0 +1,63 @@
+package com.ecommerce.controller;
+
+import javax.security.auth.login.LoginException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ecommerce.exception.LogoutException;
+import com.ecommerce.model.LoginDTO;
+import com.ecommerce.service.LoginLogoutService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+@RestController
+public class Login_Logout_controller {
+
+	@Autowired
+	private LoginLogoutService service;
+
+    @PostMapping("/myShop/adminLogin") 
+	public ResponseEntity<String> loginAdmin(@RequestBody LoginDTO login) throws LoginException{
+		
+		String res = service.loginAdmin(login);
+		
+		return new ResponseEntity<String>(res,HttpStatus.OK);
+		
+	}
+    
+    @PostMapping("/myShop/userLogin") 
+  	public ResponseEntity<String> loginUser(@RequestBody LoginDTO login) throws LoginException{
+  		
+  		String res = service.loginUser(login);
+  		
+  		return new ResponseEntity<String>(res,HttpStatus.OK);
+  		
+  	}
+    
+    
+    @PostMapping("/myShop/adminLogout") 
+   	public ResponseEntity<String> logoutAdmin(@RequestBody String key) throws LogoutException{
+   		
+   		String res = service.LogoutAdmin(key);
+   		
+   		return new ResponseEntity<String>(res,HttpStatus.OK);
+   		
+   	}
+     
+    @PostMapping("/myShop/userLogout") 
+   	public ResponseEntity<String> logoutUser(@RequestBody String key) throws LogoutException{
+   		
+   		String res = service.LogoutUser(key);
+   		
+   		return new ResponseEntity<String>(res,HttpStatus.OK);
+   		
+   	}
+    
+    
+
+}

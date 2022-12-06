@@ -6,5 +6,6 @@ import com.ecommerce.model.Current_Admin_session;
 
 public interface Current_Admin_sessionRepo extends JpaRepository<Current_Admin_session, Integer> {
 
+	public Current_Admin_session findByuuid(String uuid);
 	
 }

@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 import java.util.List;
 
 import javax.persistence.criteria.Order;
+import javax.security.auth.login.LoginException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.exception.OrderException;
@@ -21,6 +23,7 @@ import com.ecommerce.model.Orders;
 import com.ecommerce.model.Product;
 import com.ecommerce.model.User;
 import com.ecommerce.service.AdminService;
+import com.ecommerce.service.LoginLogoutService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
@@ -31,9 +34,14 @@ public class AdminContoller {
 	@Autowired
 	private AdminService adminService;
 	
+	@Autowired
+	private LoginLogoutService loginService;
+	
 	
 	@PostMapping("/products")
-	public ResponseEntity<Product> addProductHandler(@Valid  @RequestBody Product product){
+	public ResponseEntity<Product> addProductHandler( @Valid String key , @RequestBody Product product) throws LoginException{
+		
+		loginService.adminAuthentication(key);
 		
 		Product pro = adminService.addProduct(product);
 		
@@ -41,7 +49,9 @@ public class AdminContoller {
 	}
 	
 	@GetMapping("/products")
-	public ResponseEntity<List<Product>> getAllProductsHandler() throws ProductException{
+	public ResponseEntity<List<Product>> getAllProductsHandler(String key) throws ProductException, LoginException{
+		
+		loginService.adminAuthentication(key);
 		
 		List<Product> list = adminService.getAllProducts();
 		
@@ -51,7 +61,9 @@ public class AdminContoller {
 	
 	
 	@GetMapping("/orders")
-	public ResponseEntity<List<Orders>> getAllOrdersDetailsHandler() throws OrderException{
+	public ResponseEntity<List<Orders>> getAllOrdersDetailsHandler(String key) throws OrderException, LoginException{
+		
+		loginService.adminAuthentication(key);
 		
 		List<Orders> list = adminService.getAllOrdersDetails();
 		
@@ -60,7 +72,9 @@ public class AdminContoller {
 	}
 	
 	@GetMapping("/orders/{id}")
-	public ResponseEntity<Orders> searchOrderByIdHandler(@PathVariable Integer id) throws OrderException{
+	public ResponseEntity<Orders> searchOrderByIdHandler(String key ,@PathVariable Integer id) throws OrderException, LoginException{
+		
+		loginService.adminAuthentication(key);
 		
 		Orders order = adminService.searchOrderById(id);
 		
@@ -70,7 +84,9 @@ public class AdminContoller {
 	
 	
 	@GetMapping("/users")
-	public ResponseEntity<List<User>> getAllUserDetailsHandler() throws UserException{
+	public ResponseEntity<List<User>> getAllUserDetailsHandler(String key) throws UserException, LoginException{
+		
+		loginService.adminAuthentication(key);
 		
 		List<User> list = adminService.getAllUserDetails();
 		
@@ -79,7 +95,9 @@ public class AdminContoller {
 	}
 	
 	@GetMapping("/users/{id}")
-	public ResponseEntity<User> searchUserDetailByIdHandler(@PathVariable Integer id) throws UserException{
+	public ResponseEntity<User> searchUserDetailByIdHandler(String key ,@PathVariable Integer id) throws UserException, LoginException{
+		
+		loginService.adminAuthentication(key);
 		
 		User user = adminService.searchUserDetailById(id);
 		

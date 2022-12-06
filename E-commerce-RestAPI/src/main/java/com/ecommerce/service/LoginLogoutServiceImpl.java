@@ -1,8 +1,6 @@
 package com.ecommerce.service;
 
-import java.lang.StackWalker.Option;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.security.auth.login.LoginException;
@@ -74,6 +72,13 @@ public class LoginLogoutServiceImpl implements LoginLogoutService {
 	@Override
 	public String LogoutAdmin(String key) throws LogoutException {
 		
+		Current_Admin_session obj = sessionRepo.findByuuid(key);
+		
+		if(obj == null) throw new LogoutException("Wrong session key.. or Login 1st.");
+		
+		sessionRepo.delete(obj);
+		
+		return "Logout successfully!";
 		
 		
 	}
@@ -112,8 +117,36 @@ public class LoginLogoutServiceImpl implements LoginLogoutService {
 
 	@Override
 	public String LogoutUser(String key) throws LogoutException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Current_User_session obj = userSessionRepo.findByuuid(key);
+		
+		if(obj == null) throw new LogoutException("Wrong session key.. or Login 1st.");
+		
+		userSessionRepo.delete(obj);
+		
+		return "Logout successfully!";
+		
+		
+	}
+
+	@Override
+	public boolean adminAuthentication(String key) throws LoginException {
+		
+	    Current_Admin_session obj = sessionRepo.findByuuid(key);
+		
+		if(obj == null) throw new LoginException("Admin not Logged In .. or Invalid Session Key");
+		
+		return true;
+	}
+
+	@Override
+	public boolean userAuthentication(String key) throws LoginException {
+		
+		Current_User_session obj = userSessionRepo.findByuuid(key);
+		
+		if(obj == null) throw new LoginException("User not Logged In .. or Invalid Session Key");
+		
+		return true;
 	}
 
 }
